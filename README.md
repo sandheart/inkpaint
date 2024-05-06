@@ -20,6 +20,8 @@ InkPaint has a lot of performance optimization and code refactoring. One of its 
 
 At the same time, inkpaint is a common library between node.js and the browser, and it can still run normally on the browser side.
 
+text support emoji
+
 ## Current features
 
 - WebGL renderer (headless-gl)
