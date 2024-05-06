@@ -9,6 +9,7 @@ import TextMetrics from "./TextMetrics";
 import trimCanvas from "../utils/trimCanvas";
 import Doc from "../polyfill/Doc";
 import { addToTextureCache } from "../utils/cache";
+const { CanvasEmoji } = require('canvas-emoji');
 
 const defaultDestroyOptions = {
   texture: true,
@@ -201,7 +202,19 @@ export default class Text extends Sprite {
       if (isStroke) {
         this.context.strokeText(text, x, y);
       } else {
-        this.context.fillText(text, x, y);
+        let fotSize=style.fontSize
+        const canvasEmoji = new CanvasEmoji( this.context);
+        const a = canvasEmoji.drawPngReplaceEmoji({
+          text: text, //'😃😄🤣测试一下哦💋💃测试一下💋测试一下💋💃测试一下💋测试一下💋💃',
+          fillStyle: style.fillStyle,//'#000000',
+          font: `${style.fontWeight} ${fotSize}px ${style.fontFamily}`,
+          x: x,
+          y: y,
+          emojiW: fotSize,
+          emojiH: fotSize,
+        });
+        
+        //this.context.fillText(text, x, y);
       }
 
       return;
