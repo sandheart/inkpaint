@@ -1,7 +1,7 @@
 {
-  "name": "inkpaint",
+  "name": "inkpaint_c",
   "version": "2.8.1",
-  "description": "InkPaint is a lightweight node.js canvas graphics animation library.",
+  "description": "InkPaint is a lightweight node.js canvas graphics animation library,text support emoji.",
   "main": "./lib/index.js",
   "license": "MIT",
   "repository": {
