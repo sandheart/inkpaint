@@ -1,12 +1,12 @@
 {
-  "name": "inkpaint_c",
+  "name": "inkpaint-auto",
   "version": "2.8.1",
   "description": "InkPaint is a lightweight node.js canvas graphics animation library,text support emoji.",
   "main": "./lib/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sandheart/inkpaint_c.git"
+    "url": "https://github.com/sandheart/inkpaint-auto.git"
   },
   "scripts": {
     "clean": "rimraf dist lib && mkdirp dist && mkdir lib",

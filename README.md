@@ -21,6 +21,7 @@ InkPaint has a lot of performance optimization and code refactoring. One of its 
 At the same time, inkpaint is a common library between node.js and the browser, and it can still run normally on the browser side.
 
 text support emoji
+emoji 彩色表情支持
 
 ## Current features
 
@@ -36,7 +37,7 @@ text support emoji
 ## Basic Usage
 
 ```sh
-npm install inkpaint
+npm install inkpaint-auto
 ```
 
 ```js

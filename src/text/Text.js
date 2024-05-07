@@ -9,12 +9,12 @@ import TextMetrics from "./TextMetrics";
 import trimCanvas from "../utils/trimCanvas";
 import Doc from "../polyfill/Doc";
 import { addToTextureCache } from "../utils/cache";
-const { CanvasEmoji } = require('canvas-emoji');
+const { CanvasEmoji } = require("canvas-emoji");
 
 const defaultDestroyOptions = {
   texture: true,
   children: false,
-  baseTexture: true
+  baseTexture: true,
 };
 
 export default class Text extends Sprite {
@@ -202,18 +202,18 @@ export default class Text extends Sprite {
       if (isStroke) {
         this.context.strokeText(text, x, y);
       } else {
-        let fotSize=style.fontSize
-        const canvasEmoji = new CanvasEmoji( this.context);
+        const fotSize = style.fontSize;
+        const canvasEmoji = new CanvasEmoji(this.context);
         const a = canvasEmoji.drawPngReplaceEmoji({
-          text: text, //'😃😄🤣测试一下哦💋💃测试一下💋测试一下💋💃测试一下💋测试一下💋💃',
-          fillStyle: style.fillStyle,//'#000000',
+          text, //'😃😄🤣测试一下哦💋💃测试一下💋测试一下💋💃测试一下💋测试一下💋💃',
+          fillStyle: style.fillStyle, //'#000000',
           font: `${style.fontWeight} ${fotSize}px ${style.fontFamily}`,
-          x: x,
-          y: y,
+          x,
+          y,
           emojiW: fotSize,
           emojiH: fotSize,
         });
-        
+
         //this.context.fillText(text, x, y);
       }
 
@@ -255,7 +255,7 @@ export default class Text extends Sprite {
     const MOZ_HACK_REGEXP = /^moz([A-Z])/;
 
     return name
-      .replace(SPECIAL_CHARS_REGEXP, function(_, separator, letter, offset) {
+      .replace(SPECIAL_CHARS_REGEXP, function (_, separator, letter, offset) {
         return offset ? letter.toUpperCase() : letter;
       })
       .replace(MOZ_HACK_REGEXP, "Moz$1");
