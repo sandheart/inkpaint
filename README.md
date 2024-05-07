@@ -42,7 +42,7 @@ npm install inkpaint-auto
 
 ```js
 const fs = require("fs-extra");
-const { Application, Sprite, Ticker, Loader } = require("inkpaint");
+const { Application, Sprite, Ticker, Loader } = require("inkpaint-auto");
 
 const width = 800;
 const height = 600;
