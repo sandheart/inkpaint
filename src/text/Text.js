@@ -10,6 +10,7 @@ import trimCanvas from "../utils/trimCanvas";
 import Doc from "../polyfill/Doc";
 import { addToTextureCache } from "../utils/cache";
 const { CanvasEmoji } = require("canvas-emoji");
+const NodeEmoji = require("node-emoji");
 
 const defaultDestroyOptions = {
   texture: true,
@@ -192,6 +193,35 @@ export default class Text extends Sprite {
     }
   }
 
+  fillTextSupportEmoji(text, x, y) {
+    const style = this._style;
+    const fotSize = style.fontSize;
+    const canvasEmoji = new CanvasEmoji(this.context);
+    const resultX = canvasEmoji.drawPngReplaceEmoji({
+      text, //'😃😄🤣测试一下哦💋💃测试一下💋测试一下💋💃测试一下💋测试一下💋💃',
+      fillStyle: style.fillStyle, //'#000000',
+      font: `${style.fontWeight} ${fotSize}px ${style.fontFamily}`,
+      x,
+      y,
+      emojiW: fotSize,
+      emojiH: fotSize,
+    });
+  }
+
+  strokeTextSupportEmoji(text, x, y) {
+    const strArrBySource = Array.from(text);
+    const strArrByNew = [];
+    strArrBySource.forEach((item) => {
+      if (NodeEmoji.findByCode(item)) {
+        strArrByNew.push("  ");
+      } else {
+        strArrByNew.push(item);
+      }
+    });
+
+    this.context.strokeText(strArrByNew.join(""), x, y);
+  }
+
   drawLetterSpacing(text, x, y, isStroke = false) {
     const style = this._style;
 
@@ -200,21 +230,11 @@ export default class Text extends Sprite {
 
     if (letterSpacing === 0) {
       if (isStroke) {
-        this.context.strokeText(text, x, y);
+        // this.context.strokeText(text, x, y);
+        this.strokeTextSupportEmoji(text, x, y);
       } else {
-        const fotSize = style.fontSize;
-        const canvasEmoji = new CanvasEmoji(this.context);
-        const a = canvasEmoji.drawPngReplaceEmoji({
-          text, //'😃😄🤣测试一下哦💋💃测试一下💋测试一下💋💃测试一下💋测试一下💋💃',
-          fillStyle: style.fillStyle, //'#000000',
-          font: `${style.fontWeight} ${fotSize}px ${style.fontFamily}`,
-          x,
-          y,
-          emojiW: fotSize,
-          emojiH: fotSize,
-        });
-
         //this.context.fillText(text, x, y);
+        this.fillTextSupportEmoji(text, x, y);
       }
 
       return;
@@ -230,9 +250,11 @@ export default class Text extends Sprite {
     while (index < text.length) {
       current = characters[index++];
       if (isStroke) {
-        this.context.strokeText(current, currentPosition, y);
+        // this.context.strokeText(current, currentPosition, y);
+        this.strokeTextSupportEmoji(text, currentPosition, y);
       } else {
-        this.context.fillText(current, currentPosition, y);
+        // this.context.fillText(current, currentPosition, y);
+        this.fillTextSupportEmoji(text, currentPosition, y);
       }
 
       currentWidth = this.context.measureText(text.substring(index)).width;

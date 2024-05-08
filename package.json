@@ -1,6 +1,6 @@
 {
   "name": "inkpaint-auto",
-  "version": "2.8.1001",
+  "version": "2.8.1002",
   "description": "InkPaint is a lightweight node.js canvas graphics animation library,text support emoji.",
   "main": "./lib/index.js",
   "license": "MIT",
