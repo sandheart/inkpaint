@@ -213,7 +213,7 @@ export default class Text extends Sprite {
     const strArrByNew = [];
     strArrBySource.forEach((item) => {
       if (NodeEmoji.findByCode(item)) {
-        strArrByNew.push("  ");
+        strArrByNew.push("　");
       } else {
         strArrByNew.push(item);
       }
